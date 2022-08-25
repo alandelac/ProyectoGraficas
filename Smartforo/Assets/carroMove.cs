@@ -7,7 +7,7 @@ public class carroMove : MonoBehaviour
 
     int velocidadMax;
     int aceleracion;
-    WayPointContainer ruta;
+    // WayPointContainer ruta;
 
 
     // Start is called before the first frame update
