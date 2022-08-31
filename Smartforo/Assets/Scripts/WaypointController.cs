@@ -15,34 +15,42 @@ public class WaypointController : MonoBehaviour {
     public Street street;
     private Vector3 myVector;
     private Quaternion angle;
-    public bool changeLane = false;
+    public bool changeLane;
     private bool isChangingLane = false;
     private Transform prueba;
 
     private Transform currentPos;
     private Vector3 initFinalPos;
 
+     private GameObject EmptyObj;
 
-	// Use this for initialization
+
 	void Start () 
     {   
+        EmptyObj = new GameObject("aux_waypoint");
+
         waypoints = street.get_waypoints();
-        // print(waypoints[0].position.x);
         lastWaypointIndex = waypoints.Count - 1;
         targetWaypoint = waypoints[targetWaypointIndex]; //Set the first target waypoint at the start so the enemy starts moving towards a waypoint
-        myVector = new Vector3(0.0f, 0.0f, 0.0f);
+        myVector = new Vector3(50.0f, -0.66f, -180.0f);
+        EmptyObj.transform.position = getLaneVector();
         angle = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         initFinalPos = new Vector3(waypoints[lastWaypointIndex].position.x, waypoints[lastWaypointIndex].position.y, waypoints[lastWaypointIndex].position.z);
-
 	}
 	
+    Vector3 getLaneVector()
+    {
+        Vector3 currentPos = this.transform.position;
+        Vector3 temp1 = new Vector3(10.0f,0, 20.0f);
+        return temp1 + currentPos;
+    }
+
 	// Update is called once per frame
 	void Update () {
         float movementStep = movementSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
 
         Vector3 directionToTarget = targetWaypoint.position - transform.position;
-
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget); 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep); 
 
@@ -57,21 +65,29 @@ public class WaypointController : MonoBehaviour {
         if (changeLane == true)
         {
             changeWaypointsLane();
-            isChangingLane = true;
         }
 	}
 
     void changeWaypointsLane()
     {
-        print("ready to change lanes");
-        for (int i=0; i < waypoints.Count; i++)
-        {
-            float zPos = this.transform.position.z - waypoints[0].position.z + 20;
-            Vector3 temp = new Vector3(10.0f,0, zPos);
-            waypoints[i].transform.position += temp;
-        }
+        EmptyObj.transform.position = getLaneVector(); // ----------------------
+        waypoints.Insert(0, EmptyObj.transform);
+        lastWaypointIndex++;
+        targetWaypointIndex = 0;
         changeLane = false;
+        targetWaypoint = waypoints[0];
     }
+    // void changeWaypointsLane()
+    // {
+    //     print("ready to change lanes");
+    //     for (int i=0; i < waypoints.Count; i++)
+    //     {
+    //         float zPos = this.transform.position.z - waypoints[0].position.z + 20;
+    //         Vector3 temp = new Vector3(10.0f,0, zPos);
+    //         waypoints[i].transform.position += temp;
+    //     }
+    //     changeLane = false;
+    // }
 
     void CheckDistanceToWaypoint(float currentDistance)
     {
@@ -84,19 +100,19 @@ public class WaypointController : MonoBehaviour {
 
     void UpdateTargetWaypoint()
     {
-        if(targetWaypointIndex > lastWaypointIndex && isChangingLane == true)
-        {
-            print("return to final pos");
-            Vector3 temp1 = new Vector3(10.0f,0, 0.0f);
-            waypoints[lastWaypointIndex].transform.position =  initFinalPos +temp1;
-            targetWaypointIndex = lastWaypointIndex;
-        }
+        // if(targetWaypointIndex > lastWaypointIndex && isChangingLane == true)
+        // {
+        //     print("return to final pos");
+        //     Vector3 temp1 = new Vector3(10.0f,0, 0.0f);
+        //     waypoints[lastWaypointIndex].transform.position =  initFinalPos +temp1;
+        //     targetWaypointIndex = lastWaypointIndex;
+        // }
 
 
-        if(targetWaypointIndex > lastWaypointIndex)
-        {
-            return;
-        }
+        // if(targetWaypointIndex > lastWaypointIndex)
+        // {
+        //     return;
+        // }
 
         targetWaypoint = waypoints[targetWaypointIndex];
     }
