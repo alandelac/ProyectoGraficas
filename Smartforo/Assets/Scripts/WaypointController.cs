@@ -15,17 +15,24 @@ public class WaypointController : MonoBehaviour {
     public Street street;
     private Vector3 myVector;
     private Quaternion angle;
+    public bool changeLane = false;
+    private bool isChangingLane = false;
+    private Transform prueba;
+
+    private Transform currentPos;
+    private Vector3 initFinalPos;
 
 
 	// Use this for initialization
 	void Start () 
     {   
         waypoints = street.get_waypoints();
+        // print(waypoints[0].position.x);
         lastWaypointIndex = waypoints.Count - 1;
         targetWaypoint = waypoints[targetWaypointIndex]; //Set the first target waypoint at the start so the enemy starts moving towards a waypoint
         myVector = new Vector3(0.0f, 0.0f, 0.0f);
         angle = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-        this.transform.forward = new Vector3(1,0,0); //Whatever vector you want to use
+        initFinalPos = new Vector3(waypoints[lastWaypointIndex].position.x, waypoints[lastWaypointIndex].position.y, waypoints[lastWaypointIndex].position.z);
 
 	}
 	
@@ -35,8 +42,6 @@ public class WaypointController : MonoBehaviour {
         float rotationStep = rotationSpeed * Time.deltaTime;
 
         Vector3 directionToTarget = targetWaypoint.position - transform.position;
-
-        print(directionToTarget);
 
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget); 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep); 
@@ -48,7 +53,25 @@ public class WaypointController : MonoBehaviour {
         CheckDistanceToWaypoint(distance);
 
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, movementStep);
+
+        if (changeLane == true)
+        {
+            changeWaypointsLane();
+            isChangingLane = true;
+        }
 	}
+
+    void changeWaypointsLane()
+    {
+        print("ready to change lanes");
+        for (int i=0; i < waypoints.Count; i++)
+        {
+            float zPos = this.transform.position.z - waypoints[0].position.z + 20;
+            Vector3 temp = new Vector3(10.0f,0, zPos);
+            waypoints[i].transform.position += temp;
+        }
+        changeLane = false;
+    }
 
     void CheckDistanceToWaypoint(float currentDistance)
     {
@@ -61,10 +84,18 @@ public class WaypointController : MonoBehaviour {
 
     void UpdateTargetWaypoint()
     {
+        if(targetWaypointIndex > lastWaypointIndex && isChangingLane == true)
+        {
+            print("return to final pos");
+            Vector3 temp1 = new Vector3(10.0f,0, 0.0f);
+            waypoints[lastWaypointIndex].transform.position =  initFinalPos +temp1;
+            targetWaypointIndex = lastWaypointIndex;
+        }
+
+
         if(targetWaypointIndex > lastWaypointIndex)
         {
             return;
-            targetWaypointIndex = 0;
         }
 
         targetWaypoint = waypoints[targetWaypointIndex];
