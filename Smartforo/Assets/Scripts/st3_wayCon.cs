@@ -31,8 +31,8 @@ public class st3_wayCon : MonoBehaviour
     {   
         newWaypointObject = new GameObject("aux_waypoint_st3");
         finalWaypoint = new GameObject("final_waypoint_st3");
-        finalPosLane0 = new Vector3(-83.0f, -0.66f, -53.0f);
-        finalPosLane1 = new Vector3(-83.0f, -0.66f, -43.0f);
+        finalPosLane0 = new Vector3(-115.0f, -0.66f, -53.0f);
+        finalPosLane1 = new Vector3(-115.0f, -0.66f, -43.0f);
         myVector = new Vector3(-20.0f, 0.0f, 10.0f);
 
         initPos = this.transform.position;
@@ -55,7 +55,7 @@ public class st3_wayCon : MonoBehaviour
 
         Vector3 directionToTarget = targetWaypoint.position - transform.position;
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
-        // transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep); 
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep); 
 
         float distance = Vector3.Distance(transform.position, targetWaypoint.position);
         CheckDistanceToWaypoint(distance);
@@ -79,11 +79,11 @@ public class st3_wayCon : MonoBehaviour
     void startLane1()
     {
         doOnce = false;
-        if (initPos.x > -50)
+        if (initPos.z < -50)
         {
             startingLane = 0;
         }
-        if (initPos.x < -50)
+        if (initPos.z > -50)
         {
             startingLane = 1;
             waypoints[lastWaypointIndex].transform.position = finalPosLane1;
@@ -129,10 +129,11 @@ public class st3_wayCon : MonoBehaviour
 
     void UpdateTargetWaypoint()
     {
-        // if(targetWaypointIndex > lastWaypointIndex)
-        // {
-        //     return;
-        // }
+        if(targetWaypointIndex > lastWaypointIndex)
+        {
+            Destroy(this);
+            Destroy(this.gameObject);
+        }
 
         targetWaypoint = waypoints[targetWaypointIndex];
     }

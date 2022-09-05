@@ -25,14 +25,15 @@ public class st1_wayCon : MonoBehaviour
     private Vector3 finalPosLane0;
     private Vector3 finalPosLane1;
     private Vector3 temp1;
+    private Vector3 vPrueba;
     private bool doOnce = true;
 
 	void Start () 
     {   
         newWaypointObject = new GameObject("aux_waypoint_st1");
         finalWaypoint = new GameObject("final_waypoint_st1");
-        finalPosLane0  = new Vector3(40f, -0.66f, 70.6f);
-        finalPosLane1 = new Vector3(50f, -0.66f, 70.6f);
+        finalPosLane0  = new Vector3(40f, -0.66f, 92.6f);
+        finalPosLane1 = new Vector3(50f, -0.66f, 92.6f);
         myVector = new Vector3(10.0f, -0.0f, 20.0f);
 
         initPos = this.transform.position;
@@ -143,10 +144,16 @@ public class st1_wayCon : MonoBehaviour
 
     void UpdateTargetWaypoint()
     {
-        // if(targetWaypointIndex > lastWaypointIndex)
-        // {
-        //     return;
-        // }
+        vPrueba = this.transform.position;
+        vPrueba.y = -2;
+        
+
+
+        if(targetWaypointIndex > lastWaypointIndex)
+        {
+            Destroy(this);
+            Destroy(this.gameObject);
+        }
 
         targetWaypoint = waypoints[targetWaypointIndex];
     }

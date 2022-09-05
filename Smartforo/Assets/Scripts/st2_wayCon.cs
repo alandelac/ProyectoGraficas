@@ -31,8 +31,8 @@ public class st2_wayCon : MonoBehaviour
     {   
         newWaypointObject = new GameObject("aux_waypoint_st2");
         finalWaypoint = new GameObject("final_waypoint_st2");
-        finalPosLane0  = new Vector3(30f, -0.66f, -205.0f);
-        finalPosLane1 = new Vector3(20f, -0.66f, -205.0f);
+        finalPosLane0  = new Vector3(30f, -0.66f, -208.0f);
+        finalPosLane1 = new Vector3(20f, -0.66f, -208.0f);
         myVector = new Vector3(10.0f, -0.0f, -20.0f);
 
         initPos = this.transform.position;
@@ -143,10 +143,11 @@ public class st2_wayCon : MonoBehaviour
 
     void UpdateTargetWaypoint()
     {
-        // if(targetWaypointIndex > lastWaypointIndex)
-        // {
-        //     return;
-        // }
+        if(targetWaypointIndex > lastWaypointIndex)
+        {
+            Destroy(this);
+            Destroy(this.gameObject);
+        }
 
         targetWaypoint = waypoints[targetWaypointIndex];
     }
