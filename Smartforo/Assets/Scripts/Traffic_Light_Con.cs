@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaypoingContainer : MonoBehaviour
+public class Traffic_Light_Con : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] trafficL;
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

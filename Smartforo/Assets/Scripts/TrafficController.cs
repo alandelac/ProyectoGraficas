@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class prueba : MonoBehaviour
+public class TrafficController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -14,10 +13,5 @@ public class prueba : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void miPrueba()
-    {
-        Debug.Log("estoy en mi prueba");
     }
 }

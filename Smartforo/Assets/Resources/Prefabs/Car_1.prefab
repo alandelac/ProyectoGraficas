@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445df4061d2c5e0489cd0111bc0c9f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 20
+  movementSpeed: 5
   rotationSpeed: 2
   objectiveLane: 0
 --- !u!1 &7704900442899179401 stripped

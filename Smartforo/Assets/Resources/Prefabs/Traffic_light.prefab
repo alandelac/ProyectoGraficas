@@ -87,7 +87,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7631498050185747078, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1090f9c6b3e14ab4981676a3bb078f44, type: 3}
 --- !u!4 &8989586099911178963 stripped
 Transform:
