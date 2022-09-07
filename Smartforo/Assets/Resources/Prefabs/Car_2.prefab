@@ -173,6 +173,18 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSpeed: 2
   objectiveLane: 0
+--- !u!114 &6431132341210100943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4812982554576938070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012dada156ffbb94180ddc4426d69b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4813547103890452190 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082330992245098, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}

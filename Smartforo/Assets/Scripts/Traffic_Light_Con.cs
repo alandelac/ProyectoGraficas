@@ -5,7 +5,7 @@ using UnityEngine;
 public class Traffic_Light_Con : MonoBehaviour
 {
     public MeshRenderer[] trafficLigths;
-    private int currentState = 0;
+    private int currentState = 1;
     private bool isChangingState = false;
 
     void Start()
@@ -24,7 +24,6 @@ public class Traffic_Light_Con : MonoBehaviour
 
     private IEnumerator changeState()
     {
-        yield return new WaitForSeconds(3f);
 
         if (currentState == 0)
         {
@@ -34,6 +33,11 @@ public class Traffic_Light_Con : MonoBehaviour
         {
             green_st1();
         }
+        yield return new WaitForSeconds(15f);
+        int prevState = this.currentState;
+        currentState = 2;
+        yield return new WaitForSeconds(1.75f);
+        currentState = prevState;
         isChangingState = false;
     }
 
@@ -55,6 +59,11 @@ public class Traffic_Light_Con : MonoBehaviour
         trafficLigths[6].enabled = true;
         trafficLigths[7].enabled = false;
         currentState = 1;
+    }
+
+    public int getTrafficLightState()
+    {
+        return this.currentState;
     }
 
     void all_red()

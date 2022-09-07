@@ -9,8 +9,8 @@ public class st3_wayCon : MonoBehaviour
     private int targetWaypointIndex = 0;
     private float minDistance = 0.1f; 
     private int lastWaypointIndex;
-    public float movementSpeed = 5.0f;
-    public float rotationSpeed = 2.0f;
+    private float movementSpeed = 10.0f;
+    private float rotationSpeed = 2.0f;
     private Vector3 myVector;
     private Transform prueba;
     private Vector3 currentPos;
@@ -40,6 +40,8 @@ public class st3_wayCon : MonoBehaviour
         waypoints.Add(finalWaypoint.transform);
         lastWaypointIndex = waypoints.Count - 1;
         targetWaypoint = waypoints[targetWaypointIndex]; 
+        
+        movementSpeed = this.GetComponent<car_settings>().getCarSpeed();
 	}
 
 	void Update () {
@@ -48,6 +50,7 @@ public class st3_wayCon : MonoBehaviour
             startLane1();
         }
 
+        movementSpeed = this.GetComponent<car_settings>().getCarSpeed();
         float movementStep = movementSpeed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
 
@@ -72,8 +75,8 @@ public class st3_wayCon : MonoBehaviour
             changeToLane0();
         }
 
-        Debug.DrawRay(transform.position, transform.forward * 50f, Color.green, 0f);
-        Debug.DrawRay(transform.position, directionToTarget, Color.red, 0f); 
+        // Debug.DrawRay(transform.position, transform.forward * 50f, Color.green, 0f);
+        // Debug.DrawRay(transform.position, directionToTarget, Color.red, 0f); 
 	}
 
     void startLane1()
@@ -132,7 +135,11 @@ public class st3_wayCon : MonoBehaviour
         if(targetWaypointIndex > lastWaypointIndex)
         {
             Destroy(this);
-            Destroy(this.gameObject);
+            // Destroy(this.gameObject);
+            GameObject child = this.transform.GetChild(0).gameObject;
+            // child.GetComponent<BoxCollider>().enabled = false;
+            MeshRenderer renderer = child.GetComponent<MeshRenderer>();
+            renderer.enabled = false;
         }
 
         targetWaypoint = waypoints[targetWaypointIndex];
