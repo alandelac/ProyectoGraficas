@@ -93,6 +93,11 @@ public class st1_wayCon : MonoBehaviour
         }
     }
 
+    public void stop()
+    {
+        this.movementSpeed = 0;
+    }
+
     void changeToLane1()
     {
         myVector.x = 10;
