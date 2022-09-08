@@ -75,6 +75,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23897524296188826, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1afc0f29c2ef644699e804c1052b999, type: 2}
     - target: {fileID: 33067074148266492, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -158,7 +162,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 1
---- !u!114 &321089349
+--- !u!114 &4807212836333784332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,10 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f76164c41d43b84c8bf35ddd143c987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 2
   objectiveLane: 0
---- !u!114 &6431132341210100943
+--- !u!114 &6629337426247186554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23897524296188826, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44855e6c5aeb7504f8d7655acb7de341, type: 2}
     - target: {fileID: 33067074148266492, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -154,7 +158,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 1
---- !u!114 &984838170
+--- !u!114 &3084491686736042976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704339089158614273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012dada156ffbb94180ddc4426d69b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8349201118741915014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,18 +185,6 @@ MonoBehaviour:
   movementSpeed: 10
   rotationSpeed: 2
   objectiveLane: 0
---- !u!114 &3084491686736042976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7704339089158614273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012dada156ffbb94180ddc4426d69b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7704900442899179401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082330992245098, guid: ab26596a331d7ee43a3e9d29e2be9f84, type: 3}

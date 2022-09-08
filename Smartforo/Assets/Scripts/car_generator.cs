@@ -31,10 +31,12 @@ public class car_generator : MonoBehaviour
     private bool isWaiting_st4_lane0;
     private bool isWaiting_st4_lane1;
 
-    private GameObject carro_st1;
-    private GameObject carro_st2;
-    private GameObject carro_st3;
-    private GameObject carro_st4;
+    private GameObject car1;
+    private GameObject car2;
+    private GameObject car3;
+    private GameObject car4;
+    private GameObject car5;
+    private GameObject carroPrueba;
 
     private GameObject[] carList;
     private Vector3[] streetList;
@@ -47,6 +49,9 @@ public class car_generator : MonoBehaviour
     private List<GameObject> carList_st2;
     private List<GameObject> carList_st3;
     private List<GameObject> carList_st4;
+
+    GameObject[] prefabCars = new GameObject[4];
+
 
     void Start()
     {
@@ -82,10 +87,17 @@ public class car_generator : MonoBehaviour
         st4_lane0_trigger = triggerList[6];
         st4_lane1_trigger = triggerList[7];
 
-        carro_st1 = (Resources.Load ("Prefabs/Car_1") as GameObject);
-        carro_st2 = (Resources.Load ("Prefabs/Car_2") as GameObject);
-        carro_st3 = (Resources.Load ("Prefabs/Car_3") as GameObject);
-        carro_st4 = (Resources.Load ("Prefabs/Car_4") as GameObject);
+        car1 = (Resources.Load ("Prefabs/Car1") as GameObject);
+        car2 = (Resources.Load ("Prefabs/Car2") as GameObject);
+        car3 = (Resources.Load ("Prefabs/Car3") as GameObject);
+        car4 = (Resources.Load ("Prefabs/Car4") as GameObject);
+        car5 = (Resources.Load ("Prefabs/Car5") as GameObject);
+        
+        prefabCars[0] = car1;
+        prefabCars[1] = car2;
+        prefabCars[2] = car3;
+        prefabCars[3] = car4;
+        prefabCars[4] = car5;
     }
 
     void Update()
@@ -114,7 +126,6 @@ public class car_generator : MonoBehaviour
             StartCoroutine(waitForCar_st2_lane1());
         }
 
-
         if (st3_lane0_trigger.isSpaceAvailable() && isWaiting_st3_lane0 == false)
         {
             isWaiting_st3_lane0 = true;
@@ -140,12 +151,18 @@ public class car_generator : MonoBehaviour
         }
     }
 
+    private GameObject randomCarModel()
+    {
+        float randomNumber = Random.Range(0, 4);
+        return prefabCars[(int)randomNumber];
+    }
+
     private IEnumerator waitForCar_st1_lane0()
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st1 = Instantiate(carro_st1, street1Lane0, Quaternion.Euler(0, 0, 0));
-        // newCar_st1.GetComponent<car_settings>().changeCarSpeed(60f);
+        GameObject newCar_st1 = Instantiate(randomCarModel(), street1Lane0, Quaternion.Euler(0, 0, 0));
+        newCar_st1.AddComponent<st1_wayCon>();
         carList_st1.Add(newCar_st1);
         isWaiting_st1_lane0 = false;
     }
@@ -154,7 +171,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st1_1 = Instantiate(carro_st1, street1Lane1, Quaternion.Euler(0, 0, 0));
+        GameObject newCar_st1_1 = Instantiate(randomCarModel(), street1Lane1, Quaternion.Euler(0, 0, 0));
+        newCar_st1_1.AddComponent<st1_wayCon>();
         carList_st1.Add(newCar_st1_1);
         isWaiting_st1_lane1 = false;
     }
@@ -163,7 +181,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st2 = Instantiate(carro_st2, street2Lane0, Quaternion.Euler(0, 180, 0));
+        GameObject newCar_st2 = Instantiate(randomCarModel(), street2Lane0, Quaternion.Euler(0, 180, 0));
+        newCar_st2.AddComponent<st2_wayCon>();
         carList_st2.Add(newCar_st2);
         isWaiting_st2_lane0 = false;
     }
@@ -172,7 +191,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st2_1 = Instantiate(carro_st2, street2Lane1, Quaternion.Euler(0, 180, 0));
+        GameObject newCar_st2_1 = Instantiate(randomCarModel(), street2Lane1, Quaternion.Euler(0, 180, 0));
+        newCar_st2_1.AddComponent<st2_wayCon>();
         carList_st2.Add(newCar_st2_1);
         isWaiting_st2_lane1 = false;
     }
@@ -181,7 +201,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st3 = Instantiate(carro_st3, street3Lane0, Quaternion.Euler(0, 270, 0));
+        GameObject newCar_st3 = Instantiate(randomCarModel(), street3Lane0, Quaternion.Euler(0, 270, 0));
+        newCar_st3.AddComponent<st3_wayCon>();
         carList_st3.Add(newCar_st3);
         isWaiting_st3_lane0 = false;
     }
@@ -190,7 +211,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st3_1 = Instantiate(carro_st3, street3Lane1, Quaternion.Euler(0, 270, 0));
+        GameObject newCar_st3_1 = Instantiate(randomCarModel(), street3Lane1, Quaternion.Euler(0, 270, 0));
+        newCar_st3_1.AddComponent<st3_wayCon>();
         carList_st3.Add(newCar_st3_1);
         isWaiting_st3_lane1 = false;
     }
@@ -199,7 +221,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st4 = Instantiate(carro_st4, street4Lane0, Quaternion.Euler(0, 90, 0));
+        GameObject newCar_st4 = Instantiate(randomCarModel(), street4Lane0, Quaternion.Euler(0, 90, 0));
+        newCar_st4.AddComponent<st4_wayCon>();
         carList_st4.Add(newCar_st4);
         isWaiting_st4_lane0 = false;
     }
@@ -208,7 +231,8 @@ public class car_generator : MonoBehaviour
     {
         float randomSeconds = Random.Range(minTime, maxTime);
         yield return new WaitForSeconds(randomSeconds);
-        GameObject newCar_st4_1 = Instantiate(carro_st4, street4Lane1, Quaternion.Euler(0, 90, 0));
+        GameObject newCar_st4_1 = Instantiate(randomCarModel(), street4Lane1, Quaternion.Euler(0, 90, 0));
+        newCar_st4_1.AddComponent<st4_wayCon>();
         carList_st4.Add(newCar_st4_1);
         isWaiting_st4_lane1 = false;
     }
