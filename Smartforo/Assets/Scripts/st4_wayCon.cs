@@ -149,13 +149,16 @@ public class st4_wayCon : MonoBehaviour
         if(targetWaypointIndex > lastWaypointIndex)
         {
             Destroy(this);
-            // Destroy(this.gameObject);
-            GameObject child = this.transform.GetChild(0).gameObject;
-            // child.GetComponent<BoxCollider>().enabled = false;
-            MeshRenderer renderer = child.GetComponent<MeshRenderer>();
-            renderer.enabled = false;
-        }
+            Destroy(this.gameObject);
+            // GameObject child = this.transform.GetChild(0).gameObject;
+            // MeshRenderer renderer = child.GetComponent<MeshRenderer>();
+            // renderer.enabled = false;
 
-        targetWaypoint = waypoints[targetWaypointIndex];
+            // child.GetComponent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            targetWaypoint = waypoints[targetWaypointIndex];
+        }
     }
 }

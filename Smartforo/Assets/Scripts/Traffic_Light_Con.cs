@@ -36,7 +36,7 @@ public class Traffic_Light_Con : MonoBehaviour
         yield return new WaitForSeconds(15f);
         int prevState = this.currentState;
         currentState = 2;
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(1.9f);
         currentState = prevState;
         isChangingState = false;
     }

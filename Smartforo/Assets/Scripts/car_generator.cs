@@ -45,20 +45,32 @@ public class car_generator : MonoBehaviour
     int minTime = 4;
     int maxTime = 8;
 
-    private List<GameObject> carList_st1;
-    private List<GameObject> carList_st2;
-    private List<GameObject> carList_st3;
-    private List<GameObject> carList_st4;
+    private List<GameObject> carList_st1_lane0;
+    private List<GameObject> carList_st2_lane0;
+    private List<GameObject> carList_st3_lane0;
+    private List<GameObject> carList_st4_lane0;
+    private List<GameObject> carList_st1_lane1;
+    private List<GameObject> carList_st2_lane1;
+    private List<GameObject> carList_st3_lane1;
+    private List<GameObject> carList_st4_lane1;
+
+    private bool isUpdatingList = false;
 
     GameObject[] prefabCars = new GameObject[4];
 
 
     void Start()
     {
-        carList_st1 = new List<GameObject>();
-        carList_st2 = new List<GameObject>();
-        carList_st3 = new List<GameObject>();
-        carList_st4 = new List<GameObject>();
+        carList_st1_lane0 = new List<GameObject>();
+        carList_st2_lane0 = new List<GameObject>();
+        carList_st3_lane0 = new List<GameObject>();
+        carList_st4_lane0 = new List<GameObject>();
+        carList_st1_lane1 = new List<GameObject>();
+        carList_st2_lane1 = new List<GameObject>();
+        carList_st3_lane1 = new List<GameObject>();
+        carList_st4_lane1 = new List<GameObject>();
+
+        carList_st1_lane0 = new List<GameObject>();
 
         isWaiting_st1_lane0 = false;
         isWaiting_st1_lane1 = false;
@@ -149,7 +161,89 @@ public class car_generator : MonoBehaviour
             isWaiting_st4_lane1 = true;
             StartCoroutine(waitForCar_st4_lane1());
         }
+
+        // if (isUpdatingList == false)
+        // {
+        //     isUpdatingList = true;
+        //     StartCoroutine(updateList());
+        // }
+
+        updateList();
     }
+
+    void updateList()
+    {
+        // ADD BREAK TO END LOOP
+
+        for (int i=0; i < carList_st1_lane0.Count; i++)
+        {
+            if (carList_st1_lane0[i].GetComponent<car_settings>().getCarPosition().z > -85f)
+            {
+                carList_st1_lane0.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st1_lane1.Count; i++)
+        {
+            if (carList_st1_lane1[i].GetComponent<car_settings>().getCarPosition().z > -85f)
+            {
+                carList_st1_lane1.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st2_lane0.Count; i++)
+        {
+            if (carList_st2_lane0[i].GetComponent<car_settings>().getCarPosition().z < -25f)
+            {
+                carList_st2_lane0.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st2_lane1.Count; i++)
+        {
+            if (carList_st2_lane1[i].GetComponent<car_settings>().getCarPosition().z < -25f)
+            {
+                carList_st2_lane1.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st3_lane0.Count; i++)
+        {
+            if (carList_st3_lane0[i].GetComponent<car_settings>().getCarPosition().x < 62f)
+            {
+                carList_st3_lane0.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st3_lane1.Count; i++)
+        {
+            if (carList_st3_lane1[i].GetComponent<car_settings>().getCarPosition().x < 62f)
+            {
+                carList_st3_lane1.RemoveAt(i);
+            }
+        }
+
+        for (int i=0; i < carList_st4_lane0.Count; i++)
+        {
+            if (carList_st4_lane0[i].GetComponent<car_settings>().getCarPosition().x > 9f)
+            {
+                carList_st4_lane0.RemoveAt(i);
+            }            
+        }
+
+        for (int i=0; i < carList_st4_lane1.Count; i++)
+        {
+            if (carList_st4_lane1[i].GetComponent<car_settings>().getCarPosition().x > 9f)
+            {
+                carList_st4_lane1.RemoveAt(i);
+            }            
+        }
+
+        // yield return new WaitForSeconds(1f);
+        // yield return 0;
+        isUpdatingList = false;
+    }
+
 
     private GameObject randomCarModel()
     {
@@ -163,7 +257,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st1 = Instantiate(randomCarModel(), street1Lane0, Quaternion.Euler(0, 0, 0));
         newCar_st1.AddComponent<st1_wayCon>();
-        carList_st1.Add(newCar_st1);
+        carList_st1_lane0.Add(newCar_st1);
         isWaiting_st1_lane0 = false;
     }
 
@@ -173,7 +267,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st1_1 = Instantiate(randomCarModel(), street1Lane1, Quaternion.Euler(0, 0, 0));
         newCar_st1_1.AddComponent<st1_wayCon>();
-        carList_st1.Add(newCar_st1_1);
+        carList_st1_lane1.Add(newCar_st1_1);
         isWaiting_st1_lane1 = false;
     }
 
@@ -183,7 +277,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st2 = Instantiate(randomCarModel(), street2Lane0, Quaternion.Euler(0, 180, 0));
         newCar_st2.AddComponent<st2_wayCon>();
-        carList_st2.Add(newCar_st2);
+        carList_st2_lane0.Add(newCar_st2);
         isWaiting_st2_lane0 = false;
     }
 
@@ -193,7 +287,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st2_1 = Instantiate(randomCarModel(), street2Lane1, Quaternion.Euler(0, 180, 0));
         newCar_st2_1.AddComponent<st2_wayCon>();
-        carList_st2.Add(newCar_st2_1);
+        carList_st2_lane1.Add(newCar_st2_1);
         isWaiting_st2_lane1 = false;
     }
 
@@ -203,7 +297,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st3 = Instantiate(randomCarModel(), street3Lane0, Quaternion.Euler(0, 270, 0));
         newCar_st3.AddComponent<st3_wayCon>();
-        carList_st3.Add(newCar_st3);
+        carList_st3_lane0.Add(newCar_st3);
         isWaiting_st3_lane0 = false;
     }
 
@@ -213,7 +307,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st3_1 = Instantiate(randomCarModel(), street3Lane1, Quaternion.Euler(0, 270, 0));
         newCar_st3_1.AddComponent<st3_wayCon>();
-        carList_st3.Add(newCar_st3_1);
+        carList_st3_lane1.Add(newCar_st3_1);
         isWaiting_st3_lane1 = false;
     }
 
@@ -223,7 +317,7 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st4 = Instantiate(randomCarModel(), street4Lane0, Quaternion.Euler(0, 90, 0));
         newCar_st4.AddComponent<st4_wayCon>();
-        carList_st4.Add(newCar_st4);
+        carList_st4_lane0.Add(newCar_st4);
         isWaiting_st4_lane0 = false;
     }
 
@@ -233,27 +327,47 @@ public class car_generator : MonoBehaviour
         yield return new WaitForSeconds(randomSeconds);
         GameObject newCar_st4_1 = Instantiate(randomCarModel(), street4Lane1, Quaternion.Euler(0, 90, 0));
         newCar_st4_1.AddComponent<st4_wayCon>();
-        carList_st4.Add(newCar_st4_1);
+        carList_st4_lane1.Add(newCar_st4_1);
         isWaiting_st4_lane1 = false;
     }
 
-    public List<GameObject> getList_st1()
+    public List<GameObject> getList_st1_lane0()
     {
-        return this.carList_st1;
+        return this.carList_st1_lane0;
     }
 
-    public List<GameObject> getList_st2()
+    public List<GameObject> getList_st1_lane1()
     {
-        return this.carList_st2;
+        return this.carList_st1_lane1;
     }
 
-    public List<GameObject> getList_st3()
+    public List<GameObject> getList_st2_lane0()
     {
-        return this.carList_st3;
+        return this.carList_st2_lane0;
     }
 
-    public List<GameObject> getList_st4()
+    public List<GameObject> getList_st2_lane1()
     {
-        return this.carList_st4;
+        return this.carList_st2_lane1;
+    }
+
+    public List<GameObject> getList_st3_lane0()
+    {
+        return this.carList_st3_lane0;
+    }
+
+    public List<GameObject> getList_st3_lane1()
+    {
+        return this.carList_st3_lane1;
+    }
+
+    public List<GameObject> getList_st4_lane0()
+    {
+        return this.carList_st4_lane0;
+    }
+
+    public List<GameObject> getList_st4_lane1()
+    {
+        return this.carList_st4_lane1;
     }
 }
