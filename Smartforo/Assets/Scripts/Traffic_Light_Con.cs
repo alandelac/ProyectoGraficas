@@ -8,8 +8,12 @@ public class Traffic_Light_Con : MonoBehaviour
     private int currentState = 1;
     private bool isChangingState = false;
 
+    private float[] semTime = new float[3600]; 
+    private int counter = 0;
+
     void Start()
     {
+        // setTm();
         all_red();
     }
 
@@ -33,12 +37,15 @@ public class Traffic_Light_Con : MonoBehaviour
         {
             green_st1();
         }
-        yield return new WaitForSeconds(15f);
+        // yield return new WaitForSeconds(semTime[counter]);
+        yield return new WaitForSeconds(17.5f);
+
         int prevState = this.currentState;
         currentState = 2;
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(3.5f);
         currentState = prevState;
         isChangingState = false;
+        counter++;
     }
 
     void green_st1()
@@ -78,6 +85,15 @@ public class Traffic_Light_Con : MonoBehaviour
             {
                 trafficLigths[i].enabled = true;
             }
+        }
+    }
+
+    void setTm()
+    {
+        for (int i = 0; i < semTime.Length; i++)
+        {
+            float randomSeconds = Random.Range(17, 25);
+            semTime[i] = randomSeconds;
         }
     }
 }

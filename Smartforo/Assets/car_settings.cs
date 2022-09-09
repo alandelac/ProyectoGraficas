@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class car_settings : MonoBehaviour
 {
-    private float speed = 10f;
+    private float speed = 12.5f;
     private float cruisingSpeed = 12.5f;
 
     void Start()
     {
-        this.speed = 10f;
+        this.speed = 12.5f;
     }
 
     public float getCarSpeed()

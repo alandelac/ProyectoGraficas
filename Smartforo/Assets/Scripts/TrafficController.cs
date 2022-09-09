@@ -50,7 +50,6 @@ public class TrafficController : MonoBehaviour
         }
         else
         {
-            print(TrafficL.getTrafficLightState());
             trafficStop_st1();
             trafficStop_st2();
         }
