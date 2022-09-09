@@ -71,7 +71,7 @@ public class TrafficController : MonoBehaviour
         {
             for (int i=0; i < carList_st1_lane0.Count -1; i++)
             {
-                if ((carList_st1_lane0[i].GetComponent<car_settings>().getCarPosition().z - carList_st1_lane0[i+1].GetComponent<car_settings>().getCarPosition().z) < 16)
+                if ((carList_st1_lane0[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st1_lane0[i].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st1_lane0[i+1].GetComponent<car_settings>().stop();
                 }
@@ -82,7 +82,7 @@ public class TrafficController : MonoBehaviour
         {
             for (int i=0; i < carList_st1_lane1.Count -1; i++)
             {
-                if ((carList_st1_lane1[i].GetComponent<car_settings>().getCarPosition().z - carList_st1_lane1[i+1].GetComponent<car_settings>().getCarPosition().z) < 16)
+                if ((carList_st1_lane1[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st1_lane1[i].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st1_lane1[i+1].GetComponent<car_settings>().stop();
                 }
@@ -91,9 +91,9 @@ public class TrafficController : MonoBehaviour
 
         if (carList_st2_lane0.Count >= 2)
         {
-            for (int i=0; i < carList_st2_lane0.Count -1; i++)
+            for (int i=0; i < carList_st4_lane0.Count -1; i++)
             {
-                if ((carList_st2_lane0[i+1].GetComponent<car_settings>().getCarPosition().z - carList_st2_lane0[i].GetComponent<car_settings>().getCarPosition().z) < 16)
+                if ((carList_st2_lane0[i].GetComponent<car_settings>().getCarPosition().x - carList_st2_lane0[i+1].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st2_lane0[i+1].GetComponent<car_settings>().stop();
                 }
@@ -102,20 +102,22 @@ public class TrafficController : MonoBehaviour
 
         if (carList_st2_lane1.Count >= 2)
         {
-            for (int i=0; i < carList_st1_lane1.Count -1; i++)
+            for (int i=0; i < carList_st2_lane1.Count -1; i++)
             {
-                if ((carList_st2_lane1[i+1].GetComponent<car_settings>().getCarPosition().z - carList_st2_lane1[i].GetComponent<car_settings>().getCarPosition().z ) < 16)
+                if ((carList_st2_lane1[i].GetComponent<car_settings>().getCarPosition().x - carList_st2_lane1[i+1].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st2_lane1[i+1].GetComponent<car_settings>().stop();
                 }
             }
         }
 
+
+
         if (carList_st3_lane0.Count >= 2)
         {
             for (int i=0; i < carList_st3_lane0.Count -1; i++)
             {
-                if ((carList_st3_lane0[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st3_lane0[i].GetComponent<car_settings>().getCarPosition().x) < 16)
+                if ((carList_st3_lane0[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st3_lane0[i].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st3_lane0[i+1].GetComponent<car_settings>().stop();
                 }
@@ -126,7 +128,7 @@ public class TrafficController : MonoBehaviour
         {
             for (int i=0; i < carList_st3_lane1.Count -1; i++)
             {
-                if ((carList_st3_lane1[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st3_lane1[i].GetComponent<car_settings>().getCarPosition().x) < 16)
+                if ((carList_st3_lane1[i+1].GetComponent<car_settings>().getCarPosition().x - carList_st3_lane1[i].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st3_lane1[i+1].GetComponent<car_settings>().stop();
                 }
@@ -137,7 +139,7 @@ public class TrafficController : MonoBehaviour
         {
             for (int i=0; i < carList_st4_lane0.Count -1; i++)
             {
-                if ((carList_st4_lane0[i].GetComponent<car_settings>().getCarPosition().x - carList_st4_lane0[i+1].GetComponent<car_settings>().getCarPosition().x) < 16)
+                if ((carList_st4_lane0[i].GetComponent<car_settings>().getCarPosition().x - carList_st4_lane0[i+1].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st4_lane0[i+1].GetComponent<car_settings>().stop();
                 }
@@ -148,7 +150,7 @@ public class TrafficController : MonoBehaviour
         {
             for (int i=0; i < carList_st3_lane1.Count -1; i++)
             {
-                if ((carList_st4_lane1[i].GetComponent<car_settings>().getCarPosition().x - carList_st4_lane1[i+1].GetComponent<car_settings>().getCarPosition().x) < 16)
+                if ((carList_st4_lane1[i].GetComponent<car_settings>().getCarPosition().x - carList_st4_lane1[i+1].GetComponent<car_settings>().getCarPosition().x) < 21)
                 {
                     carList_st4_lane1[i+1].GetComponent<car_settings>().stop();
                 }
