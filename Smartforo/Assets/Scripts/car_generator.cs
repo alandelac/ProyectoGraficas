@@ -70,7 +70,7 @@ public class car_generator : MonoBehaviour
         carList_st3_lane1 = new List<GameObject>();
         carList_st4_lane1 = new List<GameObject>();
 
-        carList_st1_lane0 = new List<GameObject>();
+        // carList_st1_lane0 = new List<GameObject>();
 
         isWaiting_st1_lane0 = false;
         isWaiting_st1_lane1 = false;
